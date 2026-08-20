@@ -569,15 +569,16 @@
   will-change: transform;
 }
 
-/* base (4ª, mais embaixo) — 3ª textura de madeira */
+/* Lamelas do miolo (0 a 3, de baixo para cima): quatro camadas de madeira
+   coladas em direcoes alternadas. A textura alterna a cada lamela e o
+   escurecimento vai cedendo conforme sobe, para a pilha nao ler chapada. */
 #tech-scroll [data-plank="0"] {
-  background-image: linear-gradient(rgba(22, 13, 7, .30), rgba(22, 13, 7, .30)), url('tecnologia/madeira-03.webp');
+  background-image: linear-gradient(rgba(22, 13, 7, .34), rgba(22, 13, 7, .34)), url('tecnologia/madeira-03.webp');
   background-color: #dcc4a6;
   border: 1px solid rgba(0, 0, 0, .25);
   box-shadow: 0 2px 0 rgba(0, 0, 0, .35);
 }
 
-/* 3ª textura de madeira */
 #tech-scroll [data-plank="1"] {
   background-image: linear-gradient(rgba(22, 13, 7, .32), rgba(22, 13, 7, .32)), url('tecnologia/madeira-02.webp');
   background-color: #dcc4a6;
@@ -585,11 +586,29 @@
   box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
 }
 
-/* 1ª camada (topo visível) — madeira nobre (textura escura avermelhada).
+/* veio cruzado: a textura entra girada (background mais largo que alto)
+   para a lamela ler como colada em direcao oposta a de baixo */
+#tech-scroll [data-plank="2"] {
+  background-image: linear-gradient(rgba(22, 13, 7, .29), rgba(22, 13, 7, .29)), url('tecnologia/madeira-03.webp');
+  background-color: #dcc4a6;
+  background-size: auto, 100% 260%;
+  border: 1px solid rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
+}
+
+#tech-scroll [data-plank="3"] {
+  background-image: linear-gradient(rgba(22, 13, 7, .26), rgba(22, 13, 7, .26)), url('tecnologia/madeira-02.webp');
+  background-color: #dcc4a6;
+  background-size: auto, 100% 260%;
+  border: 1px solid rgba(0, 0, 0, .18);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, .28);
+}
+
+/* Camada nobre (penúltima, logo abaixo do verniz) — textura escura avermelhada.
    Ao contrário das outras, esta tem espessura real: as 4 faces laterais
    abaixo são extrudadas em Z, formando um bloco sólido. É a parte
    fisicamente mais espessa da régua e precisa ler como tal na pilha. */
-#tech-scroll [data-plank="2"] {
+#tech-scroll [data-plank="4"] {
   --plank-thickness: 18px;
   background-image: linear-gradient(rgba(22, 13, 7, .30), rgba(22, 13, 7, .30)), url('tecnologia/madeira-01.webp');
   background-color: #5a2e1a;
@@ -598,7 +617,7 @@
 }
 
 /* Faces laterais: cada uma nasce numa aresta do topo e desce em -Z. */
-#tech-scroll [data-plank="2"] .plank-edge {
+#tech-scroll [data-plank="4"] .plank-edge {
   position: absolute;
   /* mesma madeira do topo vista de corte: a camada nobre e peca macica,
      entao a lateral repete a especie. O gradiente por cima e a luz —
@@ -612,20 +631,20 @@
 }
 
 /* arestas horizontais (frente e fundo): giram em torno de X */
-#tech-scroll [data-plank="2"] .edge-front,
-#tech-scroll [data-plank="2"] .edge-back {
+#tech-scroll [data-plank="4"] .edge-front,
+#tech-scroll [data-plank="4"] .edge-back {
   left: 0;
   right: 0;
   height: var(--plank-thickness);
 }
 
-#tech-scroll [data-plank="2"] .edge-front {
+#tech-scroll [data-plank="4"] .edge-front {
   top: 100%;
   transform-origin: top center;
   transform: rotateX(-90deg);
 }
 
-#tech-scroll [data-plank="2"] .edge-back {
+#tech-scroll [data-plank="4"] .edge-back {
   bottom: 100%;
   transform-origin: bottom center;
   transform: rotateX(90deg);
@@ -633,8 +652,8 @@
 
 /* arestas verticais (laterais): giram em torno de Y, tom levemente
    distinto para o volume não ficar chapado */
-#tech-scroll [data-plank="2"] .edge-left,
-#tech-scroll [data-plank="2"] .edge-right {
+#tech-scroll [data-plank="4"] .edge-left,
+#tech-scroll [data-plank="4"] .edge-right {
   top: 0;
   bottom: 0;
   width: var(--plank-thickness);
@@ -644,20 +663,20 @@
   filter: brightness(.78) saturate(1.04);
 }
 
-#tech-scroll [data-plank="2"] .edge-right {
+#tech-scroll [data-plank="4"] .edge-right {
   left: 100%;
   transform-origin: center left;
   transform: rotateY(90deg);
 }
 
-#tech-scroll [data-plank="2"] .edge-left {
+#tech-scroll [data-plank="4"] .edge-left {
   right: 100%;
   transform-origin: center right;
   transform: rotateY(-90deg);
 }
 
-/* 4ª camada (vidro / verniz no topo) — película protetora com vidro e brilho */
-#tech-scroll [data-plank="3"] {
+/* Camada de topo (vidro / verniz) — película protetora com vidro e brilho */
+#tech-scroll [data-plank="5"] {
   background: rgba(255, 255, 255, 0.09);
   /*backdrop-filter:blur(6px) saturate(140%);*/
   /*-webkit-backdrop-filter:blur(6px) saturate(140%);*/
@@ -768,7 +787,7 @@
 
   /* palco menor: a espessura da camada nobre acompanha, para manter a
      mesma proporcao da regua real */
-  #tech-scroll [data-plank="2"] {
+  #tech-scroll [data-plank="4"] {
     --plank-thickness: 9px;
   }
 
@@ -860,7 +879,7 @@
     width: min(36vw, 640px);
   }
 
-  #tech-scroll [data-plank="2"] {
+  #tech-scroll [data-plank="4"] {
     --plank-thickness: 22px;
   }
 

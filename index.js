@@ -97,9 +97,12 @@
     if (total <= 0) return;
     const p = clamp(-r.top / total);
     const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-    const spread = window.innerWidth <= 768 ? 62 : 120;
-    const gap = 10 + eased * spread;
+    // Abertura total da pilha (do plano de baixo ao de cima). O espaco
+    // entre camadas sai dessa divisao, entao acrescentar lamelas adensa a
+    // pilha em vez de estourar o palco.
+    const spanMax = window.innerWidth <= 768 ? 216 : 390;
     const n = planks.length;
+    const gap = (30 + eased * (spanMax - 30)) / Math.max(1, n - 1);
     planks.forEach((el, i) => {
       el.style.transform = `translateZ(${((i - (n - 1) / 2) * gap).toFixed(1)}px)`;
     });
