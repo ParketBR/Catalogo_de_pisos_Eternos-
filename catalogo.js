@@ -1192,20 +1192,8 @@
         // Ordenadas por luminância média da textura: da mais clara à mais escura.
         // Descrições oficiais de parket.com.br (seção Revestimentos).
         const ESPECIES = [
-          ['cabreuva-branca', 'Cabreúva Branca', 'Mais clara e delicada, é valorizada por sua suavidade e por criar atmosferas leves e acolhedoras.'],
-          ['pinho-de-riga', 'Pinho de Riga', 'Clara e de tom amarelado suave, com nós marcantes que remetem à madeira das construções históricas brasileiras.'],
-          ['tauari', 'Tauari', 'Clara e homogênea, o tauari ilumina os ambientes, oferecendo um visual moderno e minimalista.'],
-          
-          
-          ['peroba-do-campo', 'Peroba do Campo', 'Tradicional e charmosa, sua coloração variada entre o rosado e o dourado confere autenticidade e beleza natural.'],
-          ['cabreuva-dourada', 'Cabreúva Dourada', 'Apresenta brilho natural e cor dourada, com veios elegantes que proporcionam luxo e vitalidade.'],
-          ['catuaba', 'Catuaba', 'Madeira de cor intensa e veios bem definidos, ideal para quem busca personalidade e impacto estético.'],
-          
-          ['pau-ferro', 'Pau Ferro', 'De contraste intenso entre marrom e bege, destaca-se pela beleza exótica e pelo caráter contemporâneo.'],
-          
-          ['cumaru', 'Cumaru', 'Madeira extremamente resistente, de cor castanho-avermelhada, indicada para projetos que exigem durabilidade e imponência.'],
-          
-          
+          ['bambu', 'Bambu', 'Fibras finas e paralelas em tom palha, de desenho regular e contemporâneo, com leveza que ilumina o ambiente.'],
+          ['canela', 'Canela', 'De tom castanho-acobreado e desenho macio, traz aconchego e um ar naturalmente acolhedor ao ambiente.'],
         ];
         const n = ESPECIES.length;
         const pad = (v) => String(v).padStart(2, '0');
@@ -1213,7 +1201,7 @@
         // Monta as imagens empilhadas (crossfade por opacity)
         ESPECIES.forEach(([slug, label], i) => {
           const img = document.createElement('img');
-          img.src = `${BASE}texturas/${slug}.jpg`;
+          img.src = `${BASE}texturas/${slug}.webp`;
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
@@ -1271,11 +1259,16 @@
           palco.classList.add('is-usado');
         };
 
-        stage.style.setProperty('--texturas-p', '0');
+        // Com uma única espécie não há para onde navegar: as duas setas nascem
+        // desativadas e a dica de arraste sai de cena (o ir() nunca roda, então
+        // ele não teria como ajustar nada disso depois).
+        const unica = n === 1;
+        stage.style.setProperty('--texturas-p', unica ? '1' : '0');
         setas.forEach(b => {
-          if (Number(b.dataset.dir) < 0) b.disabled = true;
+          if (unica || Number(b.dataset.dir) < 0) b.disabled = true;
           b.addEventListener('click', () => ir(idx + Number(b.dataset.dir), Number(b.dataset.dir)));
         });
+        if (unica) { palco.classList.add('is-usado'); wrap.classList.add('texturas-unica'); }
 
         // ── roda/trackpad horizontal (deltaX) e shift+scroll
         let acumulado = 0;
