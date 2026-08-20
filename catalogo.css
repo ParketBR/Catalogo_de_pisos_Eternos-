@@ -1302,3 +1302,89 @@
   content-visibility: auto;
   contain-intrinsic-size: 1px 600px;
 }
+    /* ── MEDIDAS · dentro da seção de texturas: a madeira e o tamanho da régua ── */
+    /* com uma única espécie o carrossel de texturas não tem para onde ir:
+       setas e contador saem de cena e sobra só a peça. */
+    .texturas-unica .texturas-seta,
+    .texturas-unica .texturas-contador { display: none; }
+
+    .texturas-scroll.tem-medidas .texturas-stage {
+      min-height: 0;
+      padding-top: clamp(5rem, 10vw, 8rem);
+      padding-bottom: clamp(5rem, 10vw, 8rem);
+      align-items: center;
+    }
+    .texturas-scroll.tem-medidas .texturas-regua {
+      height: min(46vh, 400px);
+    }
+    .texturas-lado {
+      display: grid;
+      justify-items: center;
+      gap: clamp(1.6rem, 4vw, 3rem);
+      min-width: 0;
+    }
+
+    .medidas-bloco {
+      margin-top: clamp(2rem, 4vw, 3rem);
+      padding-top: 1.8rem;
+      border-top: 1px solid rgba(0,0,0,0.10);
+    }
+    .medidas-eyebrow {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.38);
+      margin-bottom: 1.1rem;
+    }
+    /* medidas em linha; quebram para a linha seguinte quando faltar espaço */
+    .medidas-mini {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+    }
+    .medidas-mini li { display: flex; }
+    /* cada medida é um atalho: leva o carrossel direto para aquela régua */
+    .medidas-mini-btn {
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(0,0,0,0.45);
+      white-space: nowrap;
+      background: none;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      padding: 0 0 2px;
+      cursor: pointer;
+      transition: color var(--dur-btn) var(--ease), border-color var(--dur-btn) var(--ease);
+    }
+    .medidas-mini-btn:hover { color: #111111; }
+    .medidas-mini-btn.is-ativo { color: #111111; border-bottom-color: var(--madeira); }
+    .medidas-mini-btn:focus-visible { outline: 1px solid rgba(0,0,0,0.35); outline-offset: 3px; }
+
+    .medidas-carrossel { width: 100%; min-width: 0; }
+    .medidas-trilho {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .medidas-trilho::-webkit-scrollbar { display: none; }
+    .medidas-trilho:focus-visible { outline: 1px solid rgba(0,0,0,0.25); outline-offset: 6px; }
+    .medidas-slide { flex: 0 0 100%; scroll-snap-align: center; }
+    .medidas-svg { display: block; width: 100%; height: auto; }
+
+    /* trilha de progresso das texturas: também morta com uma única espécie */
+    .texturas-unica .texturas-trilha { display: none; }
+    .medidas-nota {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.45);
+      margin: 0 0 1.2rem;
+      max-width: 30em;
+    }

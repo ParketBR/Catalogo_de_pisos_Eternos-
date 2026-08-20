@@ -1379,4 +1379,97 @@
         }).observe(document.body, { childList: true, subtree: true });
       })();
 
+      // ─── MEDIDAS: carrossel das réguas ───────────────────────────
+      (function medidasCarrossel() {
+        const trilho = document.getElementById('medidas-trilho');
+        if (!trilho) return;
+        const slides = Array.from(trilho.children);
+        if (!slides.length) return;
+        // o contador e as setas são opcionais: a seção pode existir sem eles
+        const atual = document.getElementById('medidas-atual');
+        const total = document.getElementById('medidas-total');
+        const setas = Array.from(document.querySelectorAll('.medidas-seta'));
+        const atalhos = Array.from(document.querySelectorAll('.medidas-mini-btn'));
+
+        const pad = (v) => String(v).padStart(2, '0');
+        if (total) total.textContent = pad(slides.length);
+        let idx = 0;
+
+        const sincroniza = () => {
+          if (atual) atual.textContent = pad(idx + 1);
+          setas.forEach(b => {
+            const d = Number(b.dataset.dir);
+            b.disabled = (d < 0 && idx === 0) || (d > 0 && idx === slides.length - 1);
+          });
+          // a medida da lista acompanha a régua em cena
+          atalhos.forEach(b => {
+            const ativo = Number(b.dataset.idx) === idx;
+            b.classList.toggle('is-ativo', ativo);
+            if (ativo) b.setAttribute('aria-current', 'true');
+            else b.removeAttribute('aria-current');
+          });
+        };
+
+        const vaiPara = (n, suave) => {
+          idx = Math.max(0, Math.min(slides.length - 1, n));
+          trilho.scrollTo({
+            left: slides[idx].offsetLeft - slides[0].offsetLeft,
+            behavior: suave === false ? 'auto' : 'smooth'
+          });
+          sincroniza();
+        };
+
+        setas.forEach(b => b.addEventListener('click', () => vaiPara(idx + Number(b.dataset.dir))));
+
+        // arrastar/rolar direto no trilho também move o contador e a lista
+        trilho.addEventListener('scroll', () => {
+          const largura = trilho.clientWidth || 1;
+          const n = Math.max(0, Math.min(slides.length - 1, Math.round(trilho.scrollLeft / largura)));
+          if (n !== idx) { idx = n; sincroniza(); }
+        }, { passive: true });
+
+        trilho.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') { e.preventDefault(); vaiPara(idx + 1); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); vaiPara(idx - 1); }
+        });
+
+        // ── passagem automática
+        // Vai e volta em vez de dar a volta: assim toda transição é de um slide
+        // só, e a régua cresce e encolhe continuamente em vez de saltar do fim
+        // de volta ao começo.
+        const PAUSA = 4200;
+        const semAnimacao = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let relogio = null, sentido = 1, aVista = false, manual = false;
+
+        const para = () => { if (relogio) { clearInterval(relogio); relogio = null; } };
+        const roda = () => {
+          if (relogio || manual || semAnimacao || !aVista || slides.length < 2) return;
+          relogio = setInterval(() => {
+            if (idx + sentido >= slides.length || idx + sentido < 0) sentido = -sentido;
+            vaiPara(idx + sentido);
+          }, PAUSA);
+        };
+        // qualquer gesto do usuário assume o controle de vez
+        const assumeControle = () => { manual = true; para(); };
+        atalhos.forEach(b => b.addEventListener('click', assumeControle));
+        setas.forEach(b => b.addEventListener('click', assumeControle));
+        trilho.addEventListener('pointerdown', assumeControle);
+        trilho.addEventListener('keydown', assumeControle);
+        trilho.addEventListener('mouseenter', para);
+        trilho.addEventListener('mouseleave', roda);
+
+        // só corre enquanto a seção está à vista
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver((entradas) => {
+            entradas.forEach(e => { aVista = e.isIntersecting; if (aVista) roda(); else para(); });
+          }, { threshold: 0.35 }).observe(trilho);
+        } else {
+          aVista = true; roda();
+        }
+
+        atalhos.forEach(b => b.addEventListener('click', () => vaiPara(Number(b.dataset.idx))));
+        sincroniza();
+      })();
+
+
     })();
