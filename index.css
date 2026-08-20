@@ -585,12 +585,75 @@
   box-shadow: 0 2px 0 rgba(0, 0, 0, .3);
 }
 
-/* 1ª camada (topo visível) — madeira nobre (textura escura avermelhada) */
+/* 1ª camada (topo visível) — madeira nobre (textura escura avermelhada).
+   Ao contrário das outras, esta tem espessura real: as 4 faces laterais
+   abaixo são extrudadas em Z, formando um bloco sólido. É a parte
+   fisicamente mais espessa da régua e precisa ler como tal na pilha. */
 #tech-scroll [data-plank="2"] {
+  --plank-thickness: 18px;
   background-image: linear-gradient(rgba(22, 13, 7, .30), rgba(22, 13, 7, .30)), url('tecnologia/madeira-01.webp');
   background-color: #5a2e1a;
   border: 1px solid rgba(0, 0, 0, .18);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, .28);
+  transform-style: preserve-3d;
+}
+
+/* Faces laterais: cada uma nasce numa aresta do topo e desce em -Z. */
+#tech-scroll [data-plank="2"] .plank-edge {
+  position: absolute;
+  /* mesma madeira do topo vista de corte: a camada nobre e peca macica,
+     entao a lateral repete a especie. O gradiente por cima e a luz —
+     aresta superior acesa, base na sombra — que da volume ao bloco. */
+  background-color: #5a2e1a;
+  background-image: linear-gradient(rgba(255, 222, 190, .22), rgba(0, 0, 0, .45)),
+    url('tecnologia/madeira-01.webp');
+  background-size: auto, cover;
+  background-position: center, center;
+  box-shadow: inset 0 1px 0 rgba(255, 236, 210, .16);
+}
+
+/* arestas horizontais (frente e fundo): giram em torno de X */
+#tech-scroll [data-plank="2"] .edge-front,
+#tech-scroll [data-plank="2"] .edge-back {
+  left: 0;
+  right: 0;
+  height: var(--plank-thickness);
+}
+
+#tech-scroll [data-plank="2"] .edge-front {
+  top: 100%;
+  transform-origin: top center;
+  transform: rotateX(-90deg);
+}
+
+#tech-scroll [data-plank="2"] .edge-back {
+  bottom: 100%;
+  transform-origin: bottom center;
+  transform: rotateX(90deg);
+}
+
+/* arestas verticais (laterais): giram em torno de Y, tom levemente
+   distinto para o volume não ficar chapado */
+#tech-scroll [data-plank="2"] .edge-left,
+#tech-scroll [data-plank="2"] .edge-right {
+  top: 0;
+  bottom: 0;
+  width: var(--plank-thickness);
+  /* topos de corte transversal: mesma textura girada, um pouco mais
+     escura que as faces longas para as arestas nao se fundirem */
+  background-size: auto, auto 100%;
+  filter: brightness(.78) saturate(1.04);
+}
+
+#tech-scroll [data-plank="2"] .edge-right {
+  left: 100%;
+  transform-origin: center left;
+  transform: rotateY(90deg);
+}
+
+#tech-scroll [data-plank="2"] .edge-left {
+  right: 100%;
+  transform-origin: center right;
+  transform: rotateY(-90deg);
 }
 
 /* 4ª camada (vidro / verniz no topo) — película protetora com vidro e brilho */
@@ -703,6 +766,12 @@
     width: min(56vw, 240px);
   }
 
+  /* palco menor: a espessura da camada nobre acompanha, para manter a
+     mesma proporcao da regua real */
+  #tech-scroll [data-plank="2"] {
+    --plank-thickness: 9px;
+  }
+
   /* legendas: largura cheia, empilhadas no rodapé, mais compactas */
   #tech-scroll .tech-labels {
     left: 0;
@@ -789,6 +858,10 @@
     left: auto;
     right: calc(50% + 3.5rem);
     width: min(36vw, 640px);
+  }
+
+  #tech-scroll [data-plank="2"] {
+    --plank-thickness: 22px;
   }
 
   /* legendas: começam a 3.5rem do centro, espelhando o palco */

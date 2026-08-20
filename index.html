@@ -188,7 +188,15 @@
           <div class="tech-stack">
             <div data-plank="0"></div>
             <div data-plank="1"></div>
-            <div data-plank="2"></div>
+            <!-- Camada nobre: unica lamela com espessura real (4 faces
+                 laterais extrudadas em Z), porque e a parte fisicamente
+                 mais espessa da regua. -->
+            <div data-plank="2">
+              <span class="plank-edge edge-front"></span>
+              <span class="plank-edge edge-back"></span>
+              <span class="plank-edge edge-left"></span>
+              <span class="plank-edge edge-right"></span>
+            </div>
             <div data-plank="3" style="transform: translateZ(58.1px);"></div>
           </div>
           <div class="tech-plank-shadow" data-plank-shadow></div>
@@ -204,7 +212,7 @@
           </div>
           <div data-tech-label="1">
             <div class="tech-label-head"><span class="tech-label-num">02</span>
-              <h3 class="tech-label-name">Lamelas cruzadas</h3>
+              <h3 class="tech-label-name">Capa de uso</h3>
             </div>
             <p class="tech-label-text">Camadas coladas com os veios em direções alternadas: uma trava a outra e
               neutraliza a expansão e a contração natural da madeira.</p>
