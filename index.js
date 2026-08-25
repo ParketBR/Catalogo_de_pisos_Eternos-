@@ -100,7 +100,8 @@
     // Abertura total da pilha (do plano de baixo ao de cima). O espaco
     // entre camadas sai dessa divisao, entao acrescentar lamelas adensa a
     // pilha em vez de estourar o palco.
-    const spanMax = window.innerWidth <= 768 ? 216 : 390;
+    const spanMax = window.innerWidth > 768 ? 390
+      : window.innerHeight <= 720 ? 110 : 128;
     const n = planks.length;
     const gap = (30 + eased * (spanMax - 30)) / Math.max(1, n - 1);
     planks.forEach((el, i) => {
