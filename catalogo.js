@@ -40,7 +40,7 @@
               key: 'eternos', title: 'Eternos',
               desc: 'Tons e texturas que atravessam o tempo. Uma coleção concebida para durar visualmente e estruturalmente, em qualquer cenário.',
               localFolder: 'pisos/eternos',
-              names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 4: 'Canela Demolição', 5: 'Canela Demolição' },
+              names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 4: 'Canela Demolição' },
               specs: [
                 { label: 'Espécies', value: 'Bambu, Canela' },
                 { label: 'Origem', value: 'Madeira de reaproveitamento' },
@@ -416,7 +416,7 @@
 
       const KNOWN_LOCAL = {
         'pisos/brazil': [2,3,4,5,6,7,8,9,10,11].map(n => `${BASE}pisos/brazil/${String(n).padStart(2,'0')}.webp`),
-        'pisos/eternos': [1,2,3,4,5].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
+        'pisos/eternos': [1,2,3,4].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
         'pisos/unicos': [1,2,3,4].map(n => `${BASE}pisos/unicos/${String(n).padStart(2,'0')}.webp`)
       };
 
