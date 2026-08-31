@@ -1,7 +1,7 @@
     /* ═══════════════════════════════════════════════════════════
        PARKET DESIGN SYSTEM — tokens (fonte: #PARKET DESIGN SYSTEM)
        Paleta: madeira → branco → preto → cinza → destaque
-       Tipografia: Inter fina (display) + Inter (interface)
+       Tipografia: Geist fina (display) + Geist (interface)
        Escala: 72/56/42/32/24/20/18/16/14 · espaçamento múltiplo de 8
        Movimento: 0.6s cubic-bezier(.22,.61,.36,1)
        ═══════════════════════════════════════════════════════════ */
@@ -19,8 +19,8 @@
       --branco-10: rgba(255,255,255,0.10);
 
       /* Tipografia */
-      --font-display: 'Inter', sans-serif;
-      --font-body: 'Inter', sans-serif;
+      --font-display: 'Geist', sans-serif;
+      --font-body: 'Geist', sans-serif;
 
       /* Escala tipográfica */
       --text-display: 72px;

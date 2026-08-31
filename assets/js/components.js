@@ -2,7 +2,7 @@ class ParketLoader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div id="parket-global-loader" style="position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s cubic-bezier(.22,.61,.36,1); pointer-events: none;">
-        <h1 style="font-family: 'Inter', sans-serif; font-size: 1.5rem; letter-spacing: 0.5em; text-transform: uppercase; color: #fff; font-weight: 300; animation: pulse 2s infinite ease-in-out;">
+        <h1 style="font-family: 'Geist', sans-serif; font-size: 1.5rem; letter-spacing: 0.5em; text-transform: uppercase; color: #fff; font-weight: 300; animation: pulse 2s infinite ease-in-out;">
           Parket
         </h1>
       </div>
@@ -443,7 +443,7 @@ class ParketNav extends HTMLElement {
           border: 0;
           outline: 0;
           color: inherit;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Geist', sans-serif;
           font-size: 12px;
           letter-spacing: 0.05em;
           cursor: pointer;
@@ -496,7 +496,7 @@ class ParketNav extends HTMLElement {
           border: 0;
           outline: 0;
           color: #fff;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Geist', sans-serif;
           font-size: 15px;
           font-weight: 400;
           letter-spacing: 0.02em;
@@ -536,7 +536,7 @@ class ParketNav extends HTMLElement {
           text-decoration: none;
           border-bottom: 1px solid rgba(255,255,255,0.06);
           transition: background 0.2s ease, color 0.2s ease;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Geist', sans-serif;
         }
         .parket-search-result:hover,
         .parket-search-result:focus { background: rgba(255,255,255,0.05); color: #fff; outline: 0; }
