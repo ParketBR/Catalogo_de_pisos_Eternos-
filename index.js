@@ -5,6 +5,7 @@
    2. Reveal on scroll — fades escopados ao #sobre
    3. Logo escuro sobre seções claras
    4. 02 Tecnologia (#tech-scroll) — régua maciça 3D dirigida por scroll
+   5. Madeiras (#madeiras-tipos) — bloco maciço 3D arrastável
    ═══════════════════════════════════════════════════════════════ */
 
 /* Hero split — progresso 0→1 conforme rola dentro do runway do #hero-viewport. */
@@ -128,4 +129,69 @@
     }
   }, { rootMargin: '100px 0px' });
   io.observe(sec);
+})();
+
+/* Madeiras — piso 3D fechado, girável com o mouse/toque (seção #madeiras-tipos) */
+(function(){
+  const stage = document.querySelector('#madeiras-tipos [data-floor3d]');
+  const stack = document.querySelector('#madeiras-tipos [data-floor3d-stack]');
+  if (!stage || !stack) return;
+
+  let rotX = 58, rotZ = -38;
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  let raf = 0;
+  const render = () => {
+    raf = 0;
+    stack.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateZ(${rotZ.toFixed(2)}deg)`;
+  };
+  const schedule = () => { if (!raf) raf = requestAnimationFrame(render); };
+
+  let dragging = false, lastX = 0, lastY = 0;
+
+  const move = (x, y) => {
+    if (!dragging) return;
+    rotZ -= (x - lastX) * 0.4;
+    rotX = clamp(rotX - (y - lastY) * 0.4, 8, 88);
+    lastX = x; lastY = y;
+    schedule();
+  };
+
+  const onMouseMove = (e) => move(e.clientX, e.clientY);
+  const onMouseUp = () => end();
+  const onTouchMove = (e) => {
+    if (!dragging) return;
+    const t = e.touches[0];
+    if (e.cancelable) e.preventDefault();
+    move(t.clientX, t.clientY);
+  };
+  const onTouchEnd = () => end();
+
+  const start = (x, y) => {
+    dragging = true;
+    lastX = x;
+    lastY = y;
+    stage.classList.add('is-grabbing');
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mouseup', onMouseUp, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+  };
+
+  const end = () => {
+    if (!dragging) return;
+    dragging = false;
+    stage.classList.remove('is-grabbing');
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('touchend', onTouchEnd);
+  };
+
+  stage.addEventListener('mousedown', (e) => { e.preventDefault(); start(e.clientX, e.clientY); });
+  stage.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    start(t.clientX, t.clientY);
+  }, { passive: true });
+
+  render();
 })();

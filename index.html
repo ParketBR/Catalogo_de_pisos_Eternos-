@@ -29,7 +29,7 @@
     }
   </script>
   <link rel="stylesheet" href="catalogo.css?v=10">
-  <link rel="stylesheet" href="index.css?v=41">
+  <link rel="stylesheet" href="index.css?v=43">
 </head>
 
 <body class="antialiased selection:bg-white selection:text-black">
@@ -246,24 +246,49 @@
   <!-- ─── MADEIRAS · madeira maciça de demolição ─── -->
   <section id="madeiras-tipos" data-screen-label="Tipos de piso">
     <div class="mtipos-inner">
-      <!-- topo editorial: título à esquerda, texto à direita (mesma
-           proporção do bloco "Como o piso de madeira reage?" abaixo) -->
+      <!-- topo: título + intro à esquerda, piso 3D à direita -->
       <div class="mtipos-top">
-        <header class="mtipos-head fade-up">
-          <span class="mtipos-eyebrow">Sobre as madeiras</span>
-          <h2 class="mtipos-title">O que é um piso de demolição?
-            <span class="mtipos-sub">Madeira maciça, com história</span>
-          </h2>
-        </header>
+        <div class="mtipos-copy">
+          <header class="mtipos-head fade-up">
+            <span class="mtipos-eyebrow">Sobre as madeiras</span>
+            <h2 class="mtipos-title">O que é um piso de demolição?
+              <span class="mtipos-sub">Madeira maciça, com história</span>
+            </h2>
+          </header>
 
-        <div class="mtipos-intro">
-          <p class="fade-up">Hoje existem diversos tipos de pisos de madeira no mercado, com diferentes dimensões,
-            espécies, acabamentos e tecnologias. Por isso, a escolha não deve ser baseada apenas na estética.</p>
-          <p class="fade-up" style="transition-delay:.06s">Além da beleza e da sensação de aconchego que a madeira
-            proporciona, o piso é um elemento técnico da construção. Características como densidade, resistência às
-            variações de umidade, espessura e desempenho ao longo do tempo fazem toda a diferença.</p>
-          <p class="mtipos-lead fade-up" style="transition-delay:.12s">A coleção Eternos é feita de madeira maciça de
-            reaproveitamento: peças resgatadas de construções antigas, em que cada régua é cortada de um bloco único.</p>
+          <div class="mtipos-intro">
+            <p class="fade-up">Hoje existem diversos tipos de pisos de madeira no mercado, com diferentes
+              dimensões, espécies, acabamentos e tecnologias. Por isso, a escolha não deve ser baseada apenas na
+              estética.</p>
+            <p class="fade-up" style="transition-delay:.06s">Além da beleza e da sensação de aconchego que a madeira
+              proporciona, o piso é um elemento técnico da construção. Características como densidade, resistência às
+              variações de umidade, espessura e desempenho ao longo do tempo fazem toda a diferença.</p>
+            <p class="mtipos-lead fade-up" style="transition-delay:.12s">A coleção Eternos é feita de madeira maciça
+              de reaproveitamento: peças resgatadas de construções antigas, em que cada régua é cortada de um bloco
+              único.</p>
+          </div>
+        </div>
+
+        <!-- piso 3D: bloco maciço liso, arrastável com o mouse. Sem miolo
+             laminado e sem encaixe macho-fêmea — é uma peça única. -->
+        <div class="mtipos-3d fade-up">
+          <div class="mtipos-stage" data-floor3d>
+            <div class="mtipos-stack" data-floor3d-stack>
+              <div class="floor-face floor-top"></div>
+              <div class="floor-face floor-bottom"></div>
+              <div class="floor-face floor-edge floor-edge-f"></div>
+              <div class="floor-face floor-edge floor-edge-b"></div>
+              <div class="floor-face floor-edge floor-edge-l"></div>
+              <div class="floor-face floor-edge floor-edge-r"></div>
+            </div>
+            <div class="mtipos-shadow" data-floor3d-shadow></div>
+          </div>
+          <p class="mtipos-3d-hint">
+            <svg viewBox="0 0 40 12" aria-hidden="true">
+              <path d="M6 6h28M6 6l4-4M6 6l4 4M34 6l-4-4M34 6l-4 4" />
+            </svg>
+            <span>Arraste para girar o piso</span>
+          </p>
         </div>
       </div>
 
@@ -723,7 +748,7 @@
     window.PARKET_FILTER = 'pisos'; window.PARKET_COLLECTION = 'eternos';
     document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
-  <script defer src="index.js?v=11"></script>
+  <script defer src="index.js?v=12"></script>
   <script defer src="catalogo.js?v=16"></script>
 </body>
 
