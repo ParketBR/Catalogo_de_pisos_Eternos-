@@ -21,6 +21,7 @@
           videos: [
             { type: 'youtube', id: 'sMi3aM07EDA', vertical: true, title: 'Pisos eternos 1' },
             { type: 'youtube', id: 'G9IvWtk30rM', vertical: true, title: 'Piso Reto Canela Demolição Fazenda Santa Eliza' },
+            { type: 'youtube', id: 'Ys-ffOnVpPQ', vertical: true, title: 'Peroba Demolição' },
            ],
           collections: [
             {
