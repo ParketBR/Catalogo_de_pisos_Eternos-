@@ -43,9 +43,9 @@
               localFolder: 'pisos/eternos',
               names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 3: 'Canela Demolição', 4: 'Peroba Demolição', 5: 'Peroba Demolição', 6: 'Peroba Demolição', 7: 'Peroba Demolição' },
               // As quatro fotos de Peroba sao retrato: em vez de uma tela
-              // cheia para cada (ficavam pequenas no meio do fundo), dividem
-              // a mesma moldura, duas em cima e duas embaixo.
-              pairs: [[4, 5, 6, 7]],
+              // cheia para cada (ficavam pequenas no meio do fundo), vao aos
+              // pares, duas por moldura — viram os quadros 04 e 05.
+              pairs: [[4, 5], [6, 7]],
               specs: [
                 { label: 'Espécies', value: 'Bambu, Canela, Peroba' },
                 { label: 'Origem', value: 'Madeira de reaproveitamento' },
