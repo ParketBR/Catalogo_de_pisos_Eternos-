@@ -586,14 +586,16 @@
       object-position: center center;
     }
 
-    /* Grupo de tres: duas em cima e a terceira ocupando a linha de baixo
-       inteira, dentro da mesma moldura. Tres colunas deixariam cada foto
-       estreita demais para um retrato. */
-    .photo-stream-pair--3 {
+    /* Grupos de tres ou quatro: duas colunas por duas linhas na mesma
+       moldura. Tres ou quatro colunas deixariam cada foto estreita demais
+       para um retrato. */
+    .photo-stream-pair--3,
+    .photo-stream-pair--4 {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     }
 
+    /* com tres, a ultima ocupa a linha de baixo inteira */
     .photo-stream-pair--3 img:nth-of-type(3) {
       grid-column: 1 / -1;
     }
@@ -601,7 +603,8 @@
     /* no celular a moldura vai a tela cheia, senao cada linha fica baixa
        demais para uma foto em retrato */
     @media (max-width: 768px) {
-      .photo-stream-item.photo-stream-pair--3 {
+      .photo-stream-item.photo-stream-pair--3,
+      .photo-stream-item.photo-stream-pair--4 {
         height: 100svh;
       }
     }

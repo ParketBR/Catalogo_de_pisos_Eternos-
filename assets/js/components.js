@@ -180,10 +180,10 @@ const PARKET_PHOTOS = (() => {
     i => `pisos/brazil/${String(i).padStart(2,'0')}.webp`,
     { 1:'Cumaru',2:'Cumaru',3:'Peroba Mica',4:'Peroba Mica',5:'Cumaru',6:'Cumaru',7:'Cumaru',8:'Tauari',9:'Tauari',10:'Tauari',11:'Tauari' });
 
-  // Pisos › Eternos (local 01, 02, 04, 05, 07, 08)
+  // Pisos › Eternos (local 01, 02, 04, 05, 07, 08, 09)
   expand('Pisos › Eternos', 'pisos.html#eternos',
     i => `pisos/eternos/${String(i).padStart(2,'0')}.webp`,
-    { 1:'Bambu Demolição',2:'Canela Demolição',4:'Canela Demolição',5:'Peroba Demolição',7:'Peroba Demolição',8:'Peroba Demolição' });
+    { 1:'Bambu Demolição',2:'Canela Demolição',4:'Canela Demolição',5:'Peroba Demolição',7:'Peroba Demolição',8:'Peroba Demolição',9:'Peroba Demolição' });
 
   // Pisos › Únicos (local 01-04)
   expand('Pisos › Únicos', 'pisos.html#unicos',
