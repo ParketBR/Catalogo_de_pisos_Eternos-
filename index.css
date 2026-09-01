@@ -771,6 +771,13 @@
   font-weight: 400 !important;
 }
 
+/* destaque dentro do texto: peso um pouco maior, sem o bold cheio do
+   navegador, que brigaria com o corpo em 300 */
+#madeiras-tipos .mtipos-intro strong {
+  font-weight: 500;
+  color: var(--ink-95);
+}
+
 /* Piso 3D — bloco macico liso, arrastavel com o mouse/toque.
    Diferente do engenheirado, nao tem miolo laminado nem encaixe
    macho-femea: e uma peca unica, entao o corte das quatro bordas repete a
