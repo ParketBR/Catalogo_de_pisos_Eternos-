@@ -29,7 +29,7 @@
     }
   </script>
   <link rel="stylesheet" href="catalogo.css?v=10">
-  <link rel="stylesheet" href="index.css?v=43">
+  <link rel="stylesheet" href="index.css?v=44">
 </head>
 
 <body class="antialiased selection:bg-white selection:text-black">
@@ -171,78 +171,6 @@
 
   <!-- ─── PRODUCT SECTIONS (injected) ─── -->
   <main id="products" class="relative z-10 bg-black"></main>
-  <!-- ═══ 02 TECNOLOGIA · régua maciça 3D girada pelo scroll ═══ -->
-  <section data-screen-label="Tecnologia animada" id="tech-scroll">
-    <div class="tech-sticky">
-      <div class="tech-head">
-        <div>
-
-          <h2 class="tech-title">Você chamaria isso simplesmente de <span class="tech-accent">piso de madeira</span>?
-          </h2>
-        </div>
-        <span class="tech-hint">Continue rolando ↓</span>
-      </div>
-      <div class="tech-body">
-        <!-- palco 3D -->
-        <div class="tech-stage">
-          <div class="tech-stack">
-            <!-- Peca unica: o topo e a propria madeira e as quatro faces
-                 laterais sao extrudadas em Z, formando um bloco macico.
-                 Nao ha miolo, camada nobre nem linha de cola — o corte e a
-                 mesma madeira de ponta a ponta. O scroll gira a regua para
-                 revelar essa espessura. -->
-            <div data-plank="solid">
-              <span class="plank-edge edge-front"></span>
-              <span class="plank-edge edge-back"></span>
-              <span class="plank-edge edge-left"></span>
-              <span class="plank-edge edge-right"></span>
-            </div>
-          </div>
-          <div class="tech-plank-shadow" data-plank-shadow></div>
-        </div>
-        <!-- legendas sequenciais -->
-        <div class="tech-labels">
-          <div data-tech-label="0">
-            <div class="tech-label-head"><span class="tech-label-num">01</span>
-              <h3 class="tech-label-name">Origem</h3>
-            </div>
-            <p class="tech-label-text">Madeira resgatada de construções antigas e demolições. Cada peça já
-              atravessou décadas antes de voltar como piso.</p>
-          </div>
-          <div data-tech-label="1">
-            <div class="tech-label-head"><span class="tech-label-num">02</span>
-              <h3 class="tech-label-name">Peça única</h3>
-            </div>
-            <p class="tech-label-text">Régua maciça, cortada de um só bloco. Sem lâminas coladas: é a mesma
-              madeira da superfície ao fundo.</p>
-          </div>
-          <div data-tech-label="2">
-            <div class="tech-label-head"><span class="tech-label-num">03</span>
-              <h3 class="tech-label-name">Beneficiamento</h3>
-            </div>
-            <p class="tech-label-text">Seleção, limpeza, secagem e aplainamento peça por peça. O trabalho é
-              revelar a madeira, não apagar suas marcas.</p>
-          </div>
-          <div data-tech-label="3">
-            <div class="tech-label-head"><span class="tech-label-num">04</span>
-              <h3 class="tech-label-name">Acabamento</h3>
-            </div>
-            <p class="tech-label-text">Verniz Bona ou óleo, para proteger e dar durabilidade sem esconder a
-              textura e as marcas de uso.</p>
-          </div>
-          <div data-tech-label="4">
-            <div class="tech-label-head">
-              <h3 class="tech-label-name">O Resultado</h3>
-            </div>
-            <p class="tech-label-text">Madeira maciça de reaproveitamento, com o aspecto envelhecido que só o tempo
-              produz. Nenhuma régua se repete.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ─── MADEIRAS · madeira maciça de demolição ─── -->
   <section id="madeiras-tipos" data-screen-label="Tipos de piso">
     <div class="mtipos-inner">
@@ -707,7 +635,6 @@
             <ul>
               <li><a href="#sobre">Sobre a Parket</a></li>
 
-              <li><a href="#tech-scroll">Tecnologia</a></li>
               <li><a href="#madeiras-tipos">Madeiras</a></li>
               <li><a href="#texturas">Texturas</a></li>
             </ul>
@@ -748,7 +675,7 @@
     window.PARKET_FILTER = 'pisos'; window.PARKET_COLLECTION = 'eternos';
     document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
-  <script defer src="index.js?v=12"></script>
+  <script defer src="index.js?v=13"></script>
   <script defer src="catalogo.js?v=16"></script>
 </body>
 
