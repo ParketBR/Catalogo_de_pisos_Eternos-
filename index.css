@@ -725,76 +725,41 @@
   stroke-width: 1.4;
 }
 
-/* Traços da coleção — grade editorial, sem quadro e sem comparativo.
-   Três colunas com filete fino no topo de cada item: a mesma gramática
-   das legendas da Tecnologia, traduzida para o fundo branco. */
-#madeiras-tipos .mtipos-tracos {
-  margin-top: clamp(3rem, 6vw, 5rem);
-  padding-top: clamp(2.5rem, 4vw, 3.5rem);
-  border-top: 1px solid var(--ink-10);
-}
-
-#madeiras-tipos .mtipos-tracos-head {
-  max-width: 46rem;
-  margin-bottom: clamp(2.5rem, 4.5vw, 3.75rem);
-}
-
-#madeiras-tipos .mtipos-tracos-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 300;
-  letter-spacing: -.03em;
-  line-height: 1.12;
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
-  color: var(--ink-95);
-  max-width: 14em;
-}
-
-#madeiras-tipos .mtipos-tracos-lead {
-  margin: 1.25rem 0 0;
-  font-size: var(--text-body);
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--ink-70);
-  max-width: 38em;
-}
-
-#madeiras-tipos .mtipos-tracos-grid {
+/* Resumo dos traços da coleção — lista curta em duas colunas, dentro da
+   coluna de texto do topo (antes era um bloco próprio abaixo). */
+#madeiras-tipos .mtipos-resumo {
+  list-style: none;
+  margin: clamp(1.5rem, 2.5vw, 2rem) 0 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(2rem, 3.5vw, 3rem) clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .7rem clamp(1.25rem, 2.5vw, 2rem);
 }
 
-#madeiras-tipos .mtipos-traco {
-  border-top: 1px solid var(--ink-10);
-  padding-top: 1.1rem;
-}
-
-#madeiras-tipos .mtipos-traco-num {
-  display: block;
-  margin-bottom: .75rem;
-  font-size: var(--text-caption);
-  letter-spacing: .2em;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-}
-
-#madeiras-tipos .mtipos-traco h4 {
-  margin: 0 0 .6rem;
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -.01em;
-  line-height: 1.25;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  color: var(--ink-95);
-}
-
-#madeiras-tipos .mtipos-traco p {
-  margin: 0;
+#madeiras-tipos .mtipos-resumo li {
+  position: relative;
+  padding-left: 1.1rem;
   font-size: var(--text-small);
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.55;
   color: var(--ink-70);
+}
+
+#madeiras-tipos .mtipos-resumo li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .58em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width:560px) {
+  #madeiras-tipos .mtipos-resumo {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Bloco final: como a madeira reage (editorial em duas colunas) */
@@ -846,10 +811,6 @@
     max-width: 44rem;
   }
 
-  #madeiras-tipos .mtipos-tracos-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   #madeiras-tipos .mtipos-react {
     grid-template-columns: 1fr;
     gap: clamp(1.5rem, 4vw, 2rem);
@@ -865,10 +826,6 @@
 }
 
 @media (max-width:768px) {
-  #madeiras-tipos .mtipos-tracos-grid {
-    grid-template-columns: 1fr;
-  }
-
   #madeiras-tipos .mtipos-stage {
     /* girado, o bloco ocupa ~1,16x a largura do palco: acima disso ele
        encosta na borda da secao (overflow: clip) e o canto some. */
