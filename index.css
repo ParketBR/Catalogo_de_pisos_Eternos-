@@ -725,43 +725,6 @@
   stroke-width: 1.4;
 }
 
-/* Resumo dos traços da coleção — lista curta em duas colunas, dentro da
-   coluna de texto do topo (antes era um bloco próprio abaixo). */
-#madeiras-tipos .mtipos-resumo {
-  list-style: none;
-  margin: clamp(1.5rem, 2.5vw, 2rem) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .7rem clamp(1.25rem, 2.5vw, 2rem);
-}
-
-#madeiras-tipos .mtipos-resumo li {
-  position: relative;
-  padding-left: 1.1rem;
-  font-size: var(--text-small);
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--ink-70);
-}
-
-#madeiras-tipos .mtipos-resumo li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .58em;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-@media (max-width:560px) {
-  #madeiras-tipos .mtipos-resumo {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Bloco final: como a madeira reage (editorial em duas colunas) */
 #madeiras-tipos .mtipos-react {
   display: grid;
