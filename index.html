@@ -28,8 +28,8 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="catalogo.css?v=7">
-  <link rel="stylesheet" href="index.css?v=35">
+  <link rel="stylesheet" href="catalogo.css?v=8">
+  <link rel="stylesheet" href="index.css?v=40">
 </head>
 
 <body class="antialiased selection:bg-white selection:text-black">
@@ -171,211 +171,70 @@
 
   <!-- ─── PRODUCT SECTIONS (injected) ─── -->
   <main id="products" class="relative z-10 bg-black"></main>
-  <!-- ═══ 02 TECNOLOGIA · animação de camadas por scroll ═══ -->
-  <section data-screen-label="Tecnologia animada" id="tech-scroll">
-    <div class="tech-sticky">
-      <div class="tech-head">
-        <div>
-
-          <h2 class="tech-title">Você chamaria isso simplesmente de <span class="tech-accent">piso de madeira</span>?
-          </h2>
-        </div>
-        <span class="tech-hint">Continue rolando ↓</span>
-      </div>
-      <div class="tech-body">
-        <!-- palco 3D -->
-        <div class="tech-stage">
-          <div class="tech-stack">
-            <!-- Miolo: quatro lamelas coladas com os veios alternados. -->
-            <div data-plank="0"></div>
-            <div data-plank="1"></div>
-            <div data-plank="2"></div>
-            <div data-plank="3"></div>
-            <!-- Camada nobre: unica lamela com espessura real (4 faces
-                 laterais extrudadas em Z), porque e a parte fisicamente
-                 mais espessa da regua. -->
-            <div data-plank="4">
-              <span class="plank-edge edge-front"></span>
-              <span class="plank-edge edge-back"></span>
-              <span class="plank-edge edge-left"></span>
-              <span class="plank-edge edge-right"></span>
-            </div>
-            <div data-plank="5" style="transform: translateZ(15px);"></div>
-          </div>
-          <div class="tech-plank-shadow" data-plank-shadow></div>
-        </div>
-        <!-- legendas sequenciais -->
-        <div class="tech-labels">
-          <div data-tech-label="0">
-            <div class="tech-label-head"><span class="tech-label-num">01</span>
-              <h3 class="tech-label-name">Camada nobre</h3>
-            </div>
-            <p class="tech-label-text">Madeira tropical brasileira selecionada, responsável pela cor, textura e desenho natural do piso. Recebe acabamento com verniz Bona, garantindo proteção, durabilidade e valorização da madeira.</p>
-          </div>
-          <div data-tech-label="1">
-            <div class="tech-label-head"><span class="tech-label-num">02</span>
-              <h3 class="tech-label-name">Capa de uso</h3>
-            </div>
-            <p class="tech-label-text">Camadas coladas com os veios em direções alternadas: uma trava a outra e
-              neutraliza a expansão e a contração natural da madeira.</p>
-          </div>
-          <div data-tech-label="2">
-            <div class="tech-label-head"><span class="tech-label-num">03</span>
-              <h3 class="tech-label-name">Colagem estrutural</h3>
-            </div>
-            <p class="tech-label-text">Adesivo de alta resistência une as camadas, protege contra a umidade e sustenta a
-              estabilidade do conjunto ao longo do tempo.</p>
-          </div>
-          <div data-tech-label="3">
-            <div class="tech-label-head"><span class="tech-label-num">04</span>
-              <h3 class="tech-label-name">Especificações</h3>
-            </div>
-            <p class="tech-label-text">Réguas multicamadas de 15,08 mm, em larguras de 100, 190 e 300 mm e
-              comprimentos de até 3.000 mm. Acabamento em Verniz UV ou Laca OIL.</p>
-          </div>
-          <div data-tech-label="4">
-            <div class="tech-label-head">
-              <h3 class="tech-label-name">O Resultado</h3>
-            </div>
-            <p class="tech-label-text">100% madeira tropical brasileira, com estabilidade para réguas maiores.
-              Beleza na superfície, engenharia por dentro.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── MADEIRAS · tradicional vs engenheirado (piso 3D fechado e girável) ─── -->
+  <!-- ─── MADEIRAS · madeira maciça de demolição ─── -->
   <section id="madeiras-tipos" data-screen-label="Tipos de piso">
     <div class="mtipos-inner">
-      <!-- topo: título + intro à esquerda, piso 3D à direita -->
+      <!-- topo editorial: título à esquerda, texto à direita (mesma
+           proporção do bloco "Como o piso de madeira reage?" abaixo) -->
       <div class="mtipos-top">
-        <div class="mtipos-copy">
-          <header class="mtipos-head fade-up">
-            <span class="mtipos-eyebrow">Sobre as madeiras</span>
-            <h2 class="mtipos-title">Piso tradicional ou piso engenheirado?
-              <span class="mtipos-sub">Entenda as diferenças</span>
-            </h2>
-          </header>
+        <header class="mtipos-head fade-up">
+          <span class="mtipos-eyebrow">Sobre as madeiras</span>
+          <h2 class="mtipos-title">O que é um piso de demolição?
+            <span class="mtipos-sub">Madeira maciça, com história</span>
+          </h2>
+        </header>
 
-          <div class="mtipos-intro">
-            <p class="fade-up">Hoje existem diversos tipos de pisos de madeira no mercado, com diferentes dimensões,
-              espécies, acabamentos e tecnologias. Por isso, a escolha não deve ser baseada apenas na estética.</p>
-            <p class="fade-up" style="transition-delay:.06s">Além da beleza e da sensação de aconchego que a madeira
-              proporciona, o piso é um elemento técnico da construção. Características como estabilidade dimensional,
-              resistência às variações de umidade, espessura e desempenho ao longo do tempo fazem toda a diferença.</p>
-            <p class="mtipos-lead fade-up" style="transition-delay:.12s">A principal comparação é entre o piso tradicional
-              e o piso engenheirado.</p>
-          </div>
-        </div>
-
-        <!-- piso 3D reaproveitado: fechado e arrastável com o mouse -->
-        <div class="mtipos-3d fade-up">
-          <div class="mtipos-stage" data-floor3d>
-            <div class="mtipos-stack" data-floor3d-stack>
-              <div class="floor-face floor-top"></div>
-              <div class="floor-face floor-bottom"></div>
-              <div class="floor-face floor-edge floor-edge-f"></div>
-              <div class="floor-face floor-edge floor-edge-l"></div>
-              <div class="floor-face floor-edge floor-edge-r"></div>
-              <!-- encaixe macho×fêmea igual à régua: junta no MEIO da espessura,
-                   macho na borda frontal (+Y) e fêmea na borda traseira (-Y), alinhados. -->
-              <!-- MACHO (lingueta): projeta-se À FRENTE da face floor-edge-f, que
-                   continua fechando os ombros -> sem faces coplanares = gira sem z-fighting. -->
-              <div class="floor-face floor-tongue floor-tongue-front"></div>
-              <div class="floor-face floor-tongue floor-tongue-top"></div>
-              <div class="floor-face floor-tongue floor-tongue-bot"></div>
-              <div class="floor-face floor-tongue floor-tongue-cap floor-tongue-cap-l"></div>
-              <div class="floor-face floor-tongue floor-tongue-cap floor-tongue-cap-r"></div>
-              <!-- FÊMEA (rebaixo recuado PARA DENTRO) na borda traseira: dois lábios + interior. -->
-              <div class="floor-face floor-edge floor-groove-lip floor-groove-lip-up"></div>
-              <div class="floor-face floor-edge floor-groove-lip floor-groove-lip-lo"></div>
-              <div class="floor-face floor-groove floor-groove-inner"></div>
-              <div class="floor-face floor-groove floor-groove-floor"></div>
-              <div class="floor-face floor-groove floor-groove-ceil"></div>
-            </div>
-            <div class="mtipos-shadow" data-floor3d-shadow></div>
-          </div>
-          <p class="mtipos-3d-hint">
-            <svg viewBox="0 0 40 12" aria-hidden="true">
-              <path d="M6 6h28M6 6l4-4M6 6l4 4M34 6l-4-4M34 6l-4 4" />
-            </svg>
-            <span>Arraste para girar o piso</span>
-          </p>
+        <div class="mtipos-intro">
+          <p class="fade-up">Hoje existem diversos tipos de pisos de madeira no mercado, com diferentes dimensões,
+            espécies, acabamentos e tecnologias. Por isso, a escolha não deve ser baseada apenas na estética.</p>
+          <p class="fade-up" style="transition-delay:.06s">Além da beleza e da sensação de aconchego que a madeira
+            proporciona, o piso é um elemento técnico da construção. Características como densidade, resistência às
+            variações de umidade, espessura e desempenho ao longo do tempo fazem toda a diferença.</p>
+          <p class="mtipos-lead fade-up" style="transition-delay:.12s">A coleção Eternos é feita de madeira maciça de
+            reaproveitamento: peças resgatadas de construções antigas, em que cada régua é cortada de um bloco único.</p>
         </div>
       </div>
 
-      <div class="mtipos-cards">
+      <!-- Traços da coleção: grade editorial, sem quadro e sem comparativo -->
+      <div class="mtipos-tracos">
+        <div class="mtipos-tracos-head fade-up">
+          <h3 class="mtipos-tracos-title">O que define uma régua Eternos</h3>
+          <p class="mtipos-tracos-lead">Cada régua é produzida a partir de uma única peça de madeira já centenária,
+            preservando a autenticidade, as marcas do tempo e a beleza natural da matéria-prima.</p>
+        </div>
 
-  <!-- Piso Tradicional -->
-  <article class="mtipos-card fade-up visible">
-
-    <span class="mtipos-badge">Madeira Maciça</span>
-
-    <h3 class="mtipos-card-title">Piso Tradicional</h3>
-
-    <p class="mtipos-intro">
-      Produzido a partir de uma única peça de madeira, preservando toda a
-      autenticidade e a beleza natural da matéria-prima.
-    </p>
-
-    <div class="mtipos-divider"></div>
-
-    <h4>Características</h4>
-
-    <ul class="mtipos-list">
-      <li>Peça única de madeira maciça</li>
-      <li>Visual totalmente natural</li>
-      <li>Movimentação natural da madeira</li>
-      <li>Pode apresentar frestas e empenamentos</li>
-      <li>Mais indicado para ambientes com clima estável</li>
-    </ul>
-
-    <div class="mtipos-footer">
-      <h4>Ideal para</h4>
-      <p>Projetos que valorizam a autenticidade da madeira maciça.</p>
-    </div>
-
-  </article>
-
-  <!-- Piso Engenheirado -->
-  <article class="mtipos-card mtipos-card--eng fade-up visible" style="transition-delay:.08s">
-
-    <span class="mtipos-badge">Alta Estabilidade</span>
-
-    <h3 class="mtipos-card-title">Piso Engenheirado</h3>
-
-    <p class="mtipos-intro">
-      Estrutura multicamadas desenvolvida para reduzir movimentações naturais,
-      mantendo toda a beleza e a textura da madeira nobre.
-    </p>
-
-    <div class="mtipos-divider"></div>
-
-    <h4>Vantagens</h4>
-
-    <ul class="mtipos-list">
-      <li>100% madeira natural</li>
-      <li>Estrutura multicamadas</li>
-      <li>Maior estabilidade dimensional</li>
-      <li>Resistência às variações climáticas</li>
-      <li>Permite réguas maiores e ambientes sofisticados</li>
-      <li>Excelente desempenho em diferentes instalações</li>
-    </ul>
-
-    <div class="mtipos-footer">
-      <h4>Ideal para</h4>
-      <p>Residências e projetos de alto padrão que exigem máxima estabilidade.</p>
-    </div>
-
-  </article>
-
-</div>
-      <!-- Fecho da seção, em bloco destacado -->
-      <div class="mtipos-fecho fade-up">
-        <p class="mtipos-outro">O resultado é um piso que mantém a elegância da madeira maciça, mas com desempenho
-          superior, oferecendo mais segurança, conforto e estabilidade para o dia a dia.</p>
+        <div class="mtipos-tracos-grid">
+          <div class="mtipos-traco fade-up">
+            <span class="mtipos-traco-num">01</span>
+            <h4>Peça única</h4>
+            <p>Régua maciça cortada de um bloco só. É a mesma madeira da superfície ao fundo, sem lâminas coladas.</p>
+          </div>
+          <div class="mtipos-traco fade-up" style="transition-delay:.05s">
+            <span class="mtipos-traco-num">02</span>
+            <h4>Madeira resgatada</h4>
+            <p>Vigas e assoalhos de construções antigas, recuperados e beneficiados em vez de extraídos da floresta.</p>
+          </div>
+          <div class="mtipos-traco fade-up" style="transition-delay:.1s">
+            <span class="mtipos-traco-num">03</span>
+            <h4>Aspecto envelhecido</h4>
+            <p>Veios, nós e marcas de uso que nenhum processo industrial reproduz. Nenhuma régua se repete.</p>
+          </div>
+          <div class="mtipos-traco fade-up" style="transition-delay:.15s">
+            <span class="mtipos-traco-num">04</span>
+            <h4>Movimento natural</h4>
+            <p>A madeira trabalha com o ambiente. Pequenas frestas e variações de tom fazem parte do produto.</p>
+          </div>
+          <div class="mtipos-traco fade-up" style="transition-delay:.2s">
+            <span class="mtipos-traco-num">05</span>
+            <h4>Vida longa</h4>
+            <p>Pode ser lixada e revitalizada ao longo dos anos, recuperando a superfície sem perder a identidade.</p>
+          </div>
+          <div class="mtipos-traco fade-up" style="transition-delay:.25s">
+            <span class="mtipos-traco-num">06</span>
+            <h4>Instalação especializada</h4>
+            <p>Rende melhor em ambientes de clima estável, com instalação e manutenção feitas por equipe treinada.</p>
+          </div>
+        </div>
       </div>
 
       <!-- Bloco final: como a madeira reage -->
@@ -392,9 +251,9 @@
           <p class="fade-up" style="transition-delay:.06s">É fácil perceber como essa resposta natural pode representar
             um desafio quando utilizada em pisos, que estão regularmente sujeitos a grandes variações de temperatura em
             superfícies extensas, além da presença frequente de umidade.</p>
-          <p class="fade-up" style="transition-delay:.12s">Felizmente, a pesquisa e o desenvolvimento trouxeram soluções
-            para esse comportamento natural. Com a evolução dos pisos engenheirados modernos, a madeira e a estabilidade
-            finalmente podem coexistir em perfeita harmonia.</p>
+          <p class="fade-up" style="transition-delay:.12s">Na madeira maciça esse movimento não é eliminado — ele é
+            acomodado. Espécies densas, secagem adequada, réguas já estabilizadas por décadas de uso e uma instalação
+            bem executada fazem a madeira trabalhar em harmonia com o ambiente, e não contra ele.</p>
         </div>
       </div>
     </div>
@@ -751,7 +610,7 @@
             <ul>
               <li><a href="#sobre">Sobre a Parket</a></li>
 
-              <li><a href="#tech-scroll">Tecnologia</a></li>
+              <li><a href="#madeiras-tipos">Madeiras</a></li>
               <li><a href="#texturas">Texturas</a></li>
             </ul>
           </div>
@@ -792,7 +651,7 @@
     document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
   <script defer src="index.js?v=10"></script>
-  <script defer src="catalogo.js?v=13"></script>
+  <script defer src="catalogo.js?v=14"></script>
 </body>
 
 </html>

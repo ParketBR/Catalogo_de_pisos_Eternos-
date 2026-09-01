@@ -40,9 +40,12 @@
               key: 'eternos', title: 'Eternos',
               desc: 'Tons e texturas que atravessam o tempo. Uma coleção concebida para durar visualmente e estruturalmente, em qualquer cenário.',
               localFolder: 'pisos/eternos',
-              names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 3: 'Canela Demolição' },
+              names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 3: 'Canela Demolição', 4: 'Peroba Demolição', 5: 'Peroba Demolição' },
+              // As duas fotos de Peroba sao retrato: exibe a foto inteira,
+              // sem o corte "cover" que daria zoom forte numa vertical.
+              fits: { 4: 'contain', 5: 'contain' },
               specs: [
-                { label: 'Espécies', value: 'Bambu, Canela' },
+                { label: 'Espécies', value: 'Bambu, Canela, Peroba' },
                 { label: 'Origem', value: 'Madeira de reaproveitamento' },
                 { label: 'Característica', value: 'Aspecto envelhecido natural' },
               ]
@@ -416,7 +419,7 @@
 
       const KNOWN_LOCAL = {
         'pisos/brazil': [2,3,4,5,6,7,8,9,10,11].map(n => `${BASE}pisos/brazil/${String(n).padStart(2,'0')}.webp`),
-        'pisos/eternos': [1,2,4].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
+        'pisos/eternos': [1,2,4,5,6].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
         'pisos/unicos': [1,2,3,4].map(n => `${BASE}pisos/unicos/${String(n).padStart(2,'0')}.webp`)
       };
 

@@ -553,8 +553,22 @@
       transition: transform var(--dur) var(--ease);
     }
     .photo-stream-item.in-view img { transform: scale(1); }
-    /* Fundo desfocado por trás de fotos exibidas inteiras (fit contain) */
-    
+    /* Fundo desfocado por trás de fotos exibidas inteiras (fit contain):
+       a propria foto, ampliada e borrada, preenche a moldura de 100vh para
+       a foto em retrato aparecer inteira sem sobrar faixa preta ao lado.
+       Sai do fluxo (absolute) — senao empilha embaixo da foto real. */
+    .photo-stream-item .photo-blur-bg,
+    .photo-stream-item.in-view .photo-blur-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.15);
+      filter: blur(34px) brightness(0.5) saturate(1.1);
+      transition: none;
+    }
+
     .photo-stream-item img:not(.photo-blur-bg) { position: relative; z-index: 1; }
     .photo-stream-caption {
       position: absolute;
@@ -908,7 +922,7 @@
     .lb-next { right: 28px; top: 50%; transform: translateY(-50%); }
     .lb-prev:hover, .lb-next:hover { transform: translateY(-50%) scale(1.06); }
 
-    /* ── Parquet tradicional ou engenheirado? ── */
+    /* ── Madeira maciça de demolição ── */
 
     /* ── Porque escolher a Parket (antes da Árvore) ── */
     .porque-title {
