@@ -47,6 +47,9 @@
                 4: 'Canela Demolição', 5: 'Canela Demolição', 6: 'Canela Demolição',
                 7: 'Canela Demolição', 8: 'Peroba Demolição', 9: 'Peroba Demolição'
               },
+              // As duas fotos de escada (06 e 08) sao retrato e conversam
+              // entre si: dividem a mesma moldura, lado a lado.
+              pairs: [[5, 6]],
               specs: [
                 { label: 'Espécies', value: 'Bambu, Canela, Peroba' },
                 { label: 'Origem', value: 'Madeira de reaproveitamento' },
@@ -422,7 +425,7 @@
 
       const KNOWN_LOCAL = {
         'pisos/brazil': [2,3,4,5,6,7,8,9,10,11].map(n => `${BASE}pisos/brazil/${String(n).padStart(2,'0')}.webp`),
-        'pisos/eternos': [1,2,4,5,6,7,8,9,10].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
+        'pisos/eternos': [1,2,4,5,6,8,7,9,10].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
         'pisos/unicos': [1,2,3,4].map(n => `${BASE}pisos/unicos/${String(n).padStart(2,'0')}.webp`)
       };
 
