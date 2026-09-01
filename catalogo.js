@@ -41,9 +41,10 @@
               desc: 'Tons e texturas que atravessam o tempo. Uma coleção concebida para durar visualmente e estruturalmente, em qualquer cenário.',
               localFolder: 'pisos/eternos',
               names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 3: 'Canela Demolição', 4: 'Peroba Demolição', 5: 'Peroba Demolição' },
-              // As duas fotos de Peroba sao retrato: exibe a foto inteira,
-              // sem o corte "cover" que daria zoom forte numa vertical.
-              fits: { 4: 'contain', 5: 'contain' },
+              // As duas fotos de Peroba sao retrato: em vez de uma tela cheia
+              // para cada (ficavam pequenas no meio do fundo), dividem a
+              // mesma moldura, lado a lado.
+              pairs: [[4, 5]],
               specs: [
                 { label: 'Espécies', value: 'Bambu, Canela, Peroba' },
                 { label: 'Origem', value: 'Madeira de reaproveitamento' },
@@ -442,6 +443,30 @@
 
       const getImg = (item) => typeof item === 'string' ? { src: item } : item;
 
+      // Fotos em retrato ficam pequenas quando cada uma ocupa sozinha uma
+      // moldura de 100vh (sobra fundo dos dois lados). `pairs: [[4,5]]` junta
+      // as posicoes 4 e 5 num quadro so, lado a lado, no mesmo padrao
+      // full-bleed das demais fotos do stream.
+      function applyPairs(list, pairs) {
+        if (!pairs || !pairs.length) return list;
+        const taken = new Set();
+        pairs.forEach(([a, b]) => { taken.add(a); taken.add(b); });
+        const out = [];
+        list.forEach((img, i) => {
+          const pos = i + 1;
+          const pair = pairs.find(([a]) => a === pos);
+          if (pair) {
+            const [a, b] = pair;
+            if (list[a - 1] && list[b - 1]) {
+              out.push({ pair: [list[a - 1], list[b - 1]], name: list[a - 1].name });
+              return;
+            }
+          }
+          if (!taken.has(pos)) out.push(img);
+        });
+        return out;
+      }
+
       // Proxy remote parket.com.br images through images.weserv.nl for
       // automatic WebP conversion + on-the-fly resize. Local URLs pass-through.
       function proxify(url, width = 1600) {
@@ -491,6 +516,22 @@
           item.className = 'photo-stream-item';
           if (idPrefix) item.id = `foto-${idPrefix}-${i}`;
           const label = caption ? `<span class="photo-num-inline">${num}</span> ${caption}` : `<span class="photo-num-inline">${num}</span>`;
+
+          // Par lado a lado: duas fotos dividindo a mesma moldura, cada uma
+          // preenchendo metade da tela em "cover". Sai antes das linhas que
+          // leem img.src — uma entrada de par nao tem src proprio.
+          if (img.pair) {
+            const loading = i === 0 ? 'eager' : 'lazy';
+            item.classList.add('photo-stream-pair');
+            item.innerHTML = `
+            ${img.pair.map(ph => `<img decoding="async" loading="${loading}" src="${proxify(ph.src, 1600)}" alt="${caption || title}">`).join('\n            ')}
+            <figcaption class="photo-stream-caption">${label}</figcaption>
+          `;
+            container.appendChild(item);
+            inViewIo.observe(item);
+            return;
+          }
+
           const styleParts = [];
           if (img.focus) styleParts.push(`object-position: center ${img.focus}`);
           if (img.fit) styleParts.push(`object-fit: ${img.fit}`);
@@ -766,14 +807,15 @@
           let imgs = col.images;
           if (!imgs && col.localFolder) {
             const local = await findLocalImages(col.localFolder);
-            imgs = local.map((src, i) => ({ src, name: (col.names || {})[i + 1], fit: (col.fits || {})[i + 1] }));
+            imgs = applyPairs(local.map((src, i) => ({ src, name: (col.names || {})[i + 1], fit: (col.fits || {})[i + 1] })), col.pairs);
           }
           if (!imgs || !imgs.length) {
             stream.remove();
             return;
           }
           const bg = cover.querySelector('.collection-cover-bg');
-          if (bg && !bg.style.backgroundImage) bg.style.backgroundImage = `url('${proxify(getImg(imgs[0]).src, 1600)}')`;
+          const firstImg = getImg(imgs[0]).pair ? getImg(imgs[0]).pair[0] : getImg(imgs[0]);
+          if (bg && !bg.style.backgroundImage) bg.style.backgroundImage = `url('${proxify(firstImg.src, 1600)}')`;
           buildPhotoStream(stream, imgs, col.title);
         })();
 
@@ -920,7 +962,7 @@
         (product.collections || []).map(async (col) => {
           if (!col.images && col.localFolder) {
             const local = await findLocalImages(col.localFolder);
-            col.images = local.map((src, i) => ({ src, name: (col.names || {})[i + 1], fit: (col.fits || {})[i + 1] }));
+            col.images = applyPairs(local.map((src, i) => ({ src, name: (col.names || {})[i + 1], fit: (col.fits || {})[i + 1] })), col.pairs);
           }
         })
       ));

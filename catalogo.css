@@ -570,6 +570,21 @@
     }
 
     .photo-stream-item img:not(.photo-blur-bg) { position: relative; z-index: 1; }
+
+    /* Par de fotos dividindo a mesma moldura: duas colunas iguais, cada
+       foto em "cover" na metade da tela — mesmo padrao full-bleed do resto
+       do stream, sem encolher a foto no meio de um fundo. */
+    .photo-stream-pair {
+      display: grid;
+      /* minmax(0,...) senao a altura natural da foto estoura a coluna */
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 2px;
+    }
+    .photo-stream-pair img {
+      min-width: 0;
+      min-height: 0;
+      object-position: center center;
+    }
     .photo-stream-caption {
       position: absolute;
       bottom: 2.5rem;
