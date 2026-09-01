@@ -585,6 +585,26 @@
       min-height: 0;
       object-position: center center;
     }
+
+    /* Grupo de tres: mais uma coluna na mesma moldura. */
+    .photo-stream-pair--3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* No celular tres colunas dariam ~125px cada. O grupo de tres vira
+       2x2 (a terceira ocupa a linha de baixo inteira) numa moldura de
+       tela cheia, para cada foto manter altura de leitura. */
+    @media (max-width: 768px) {
+      .photo-stream-item.photo-stream-pair--3 {
+        height: 100svh;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .photo-stream-pair--3 img:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+    }
     .photo-stream-caption {
       position: absolute;
       bottom: 2.5rem;

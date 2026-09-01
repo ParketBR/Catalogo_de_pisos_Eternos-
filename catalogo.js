@@ -40,11 +40,11 @@
               key: 'eternos', title: 'Eternos',
               desc: 'Tons e texturas que atravessam o tempo. Uma coleção concebida para durar visualmente e estruturalmente, em qualquer cenário.',
               localFolder: 'pisos/eternos',
-              names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 3: 'Canela Demolição', 4: 'Peroba Demolição', 5: 'Peroba Demolição' },
-              // As duas fotos de Peroba sao retrato: em vez de uma tela cheia
+              names: { 1: 'Bambu Demolição', 2: 'Canela Demolição', 3: 'Canela Demolição', 4: 'Peroba Demolição', 5: 'Peroba Demolição', 6: 'Peroba Demolição' },
+              // As tres fotos de Peroba sao retrato: em vez de uma tela cheia
               // para cada (ficavam pequenas no meio do fundo), dividem a
               // mesma moldura, lado a lado.
-              pairs: [[4, 5]],
+              pairs: [[4, 5, 6]],
               specs: [
                 { label: 'Espécies', value: 'Bambu, Canela, Peroba' },
                 { label: 'Origem', value: 'Madeira de reaproveitamento' },
@@ -420,7 +420,7 @@
 
       const KNOWN_LOCAL = {
         'pisos/brazil': [2,3,4,5,6,7,8,9,10,11].map(n => `${BASE}pisos/brazil/${String(n).padStart(2,'0')}.webp`),
-        'pisos/eternos': [1,2,4,5,6].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
+        'pisos/eternos': [1,2,4,5,6,7].map(n => `${BASE}pisos/eternos/${String(n).padStart(2,'0')}.webp`),
         'pisos/unicos': [1,2,3,4].map(n => `${BASE}pisos/unicos/${String(n).padStart(2,'0')}.webp`)
       };
 
@@ -444,21 +444,21 @@
       const getImg = (item) => typeof item === 'string' ? { src: item } : item;
 
       // Fotos em retrato ficam pequenas quando cada uma ocupa sozinha uma
-      // moldura de 100vh (sobra fundo dos dois lados). `pairs: [[4,5]]` junta
-      // as posicoes 4 e 5 num quadro so, lado a lado, no mesmo padrao
-      // full-bleed das demais fotos do stream.
+      // moldura de 100vh (sobra fundo dos dois lados). `pairs: [[4,5,6]]`
+      // junta as posicoes 4, 5 e 6 num quadro so, lado a lado, no mesmo
+      // padrao full-bleed das demais fotos do stream. O grupo aceita 2 ou 3.
       function applyPairs(list, pairs) {
         if (!pairs || !pairs.length) return list;
         const taken = new Set();
-        pairs.forEach(([a, b]) => { taken.add(a); taken.add(b); });
+        pairs.forEach(group => group.forEach(pos => taken.add(pos)));
         const out = [];
         list.forEach((img, i) => {
           const pos = i + 1;
-          const pair = pairs.find(([a]) => a === pos);
-          if (pair) {
-            const [a, b] = pair;
-            if (list[a - 1] && list[b - 1]) {
-              out.push({ pair: [list[a - 1], list[b - 1]], name: list[a - 1].name });
+          const group = pairs.find(g => g[0] === pos);
+          if (group) {
+            const fotos = group.map(n => list[n - 1]).filter(Boolean);
+            if (fotos.length === group.length) {
+              out.push({ pair: fotos, name: fotos[0].name });
               return;
             }
           }
@@ -523,6 +523,7 @@
           if (img.pair) {
             const loading = i === 0 ? 'eager' : 'lazy';
             item.classList.add('photo-stream-pair');
+            if (img.pair.length > 2) item.classList.add('photo-stream-pair--3');
             item.innerHTML = `
             ${img.pair.map(ph => `<img decoding="async" loading="${loading}" src="${proxify(ph.src, 1600)}" alt="${caption || title}">`).join('\n            ')}
             <figcaption class="photo-stream-caption">${label}</figcaption>
@@ -1238,6 +1239,7 @@
         // Descrições oficiais de parket.com.br (seção Revestimentos).
         const ESPECIES = [
           ['bambu', 'Bambu', 'Fibras finas e paralelas em tom palha, de desenho regular e contemporâneo, com leveza que ilumina o ambiente.'],
+          ['peroba-demolicao', 'Peroba Demolição', 'De tom mel amadeirado e desenho irregular, guarda nós, fendas e marcas de uso que dão caráter ao ambiente.'],
           ['canela', 'Canela', 'De tom castanho-acobreado e desenho macio, traz aconchego e um ar naturalmente acolhedor ao ambiente.'],
         ];
         const n = ESPECIES.length;
